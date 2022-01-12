@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeScreen">
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:orderInCategory="10"
+        android:title="settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:orderInCategory="20"
+        android:title="home"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_person"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:orderInCategory="30"
+        android:title="personal"
+        app:showAsAction="never" />
+</menu>
