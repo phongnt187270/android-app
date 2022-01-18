@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\VaccinationInfo;
+use App\Http\Resources\VaccinationInfoCardResource;
+use App\Http\Resources\VaccinationInfoCardCollection;
 
 class VaccinationInfoCotroller extends Controller
 {
@@ -37,6 +39,14 @@ class VaccinationInfoCotroller extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'vaccination_info_id' => 'required',
+
+            
+        ]);
+
+        $vaccination_card = VaccinationInfo::create($request->all());
+        return new VaccinationInfoCardResource($vaccination_card);
     }
 
     /**
@@ -45,9 +55,10 @@ class VaccinationInfoCotroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $vaccination_card)
     {
         //
+        return VaccinationInfo::find($vaccination_card);
     }
 
     /**
@@ -68,9 +79,12 @@ class VaccinationInfoCotroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, VaccinationInfo $vaccination_card)
     {
         //
+        $vaccination_card->update($request->all());
+
+        return new VaccinationInfoCardResource($vaccination_card);
     }
 
     /**
@@ -79,8 +93,9 @@ class VaccinationInfoCotroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(VaccinationInfo $vaccination_card)
     {
         //
+        $vaccination_card->delete();
     }
 }

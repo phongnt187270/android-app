@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vaccine;
+use App\Http\Resources\VaccineResource;
+use App\Http\Resources\VaccineCollection;
 
 class VaccineCotroller extends Controller
 {
@@ -37,6 +39,17 @@ class VaccineCotroller extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'vaccine_id' => 'required',
+            'manufacturer' => 'required',
+            'dose_number' => 'required',
+            'injected_location' => 'required',
+            'injected_date' => 'required',
+            'commodity_number' => 'required'
+        ]);
+
+        $vaccine = Vaccine::create($request->all());
+        return new VaccineResource($vaccine);
         
     }
 
@@ -49,7 +62,7 @@ class VaccineCotroller extends Controller
     public function show($vaccine)
     {
         //
-        return VaccineInjection::find($vaccine);
+        return Vaccine::find($vaccine);
     }
 
     /**
@@ -70,9 +83,11 @@ class VaccineCotroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vaccine $vaccine)
     {
         //
+        $vaccine->update($request->all());
+        return new VaccineResource($vaccine);
     }
 
     /**
@@ -81,8 +96,9 @@ class VaccineCotroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vaccine $vaccine)
     {
         //
+        $vaccine->delete();
     }
 }

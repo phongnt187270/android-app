@@ -9,6 +9,7 @@ class Vaccine extends Model
     //
     public $timestamps = false;
     protected $fillable = [
+        'vaccine_id',
         'manufacturer',
         'dose_number',
         'injected_location',

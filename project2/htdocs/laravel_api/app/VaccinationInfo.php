@@ -9,7 +9,9 @@ class VaccinationInfo extends Model
     //
     public $timestamps = false;
     protected $fillable = [
-        'vaccination_info_id', 'vaccination_injection_1', 'vaccination_injection_2', 'injected_location', 'injected_date', 'cargo_number'
+        'vaccination_info_id',
+        'vaccination_injection_1',
+        'vaccination_injection_2'
     ];
     protected $primaryKey = 'vaccination_info_id';
     protected $foreignKey_1 = 'vaccination_injection_1';

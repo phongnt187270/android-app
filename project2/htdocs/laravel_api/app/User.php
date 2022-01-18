@@ -10,7 +10,14 @@ class User extends Model
     //
     public $timestamps = false;
     protected $fillable = [
-        'user_id', 'phonenumber', 'password', 'name', 'dob', 'division', 'role', 'vaccination_info_id'
+        'user_id', 
+        'phonenumber', 
+        'password', 
+        'name', 
+        'dob', 
+        'division', 
+        'role', 
+        'vaccination_info_id'
     ];
     protected $primaryKey = 'user_id';
     protected $foreignKey = 'vaccination_info_id';
